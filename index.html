@@ -35,7 +35,7 @@ body{
   line-height:1.6;
   overflow-x:hidden;
 }
-
+ 
 /* NAV */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
@@ -64,7 +64,7 @@ nav.scrolled{
   transition:color .2s;
 }
 .nav-links a:hover{color:var(--terra)}
-
+ 
 /* HERO */
 #hero{
   min-height:100vh;
@@ -147,7 +147,7 @@ nav.scrolled{
   transition:border-color .2s,color .2s,transform .15s;
 }
 .btn-ghost:hover{border-color:#FAF7F2;transform:translateY(-1px)}
-
+ 
 /* SCROLL INDICATOR */
 .scroll-hint{
   position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
@@ -156,7 +156,7 @@ nav.scrolled{
 }
 .scroll-hint span{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,247,242,.6)}
 .scroll-line{width:1px;height:3rem;background:linear-gradient(to bottom,rgba(250,247,242,.5),transparent);animation:scrollPulse 2s 1.5s infinite}
-
+ 
 /* BAND / TRUST LOGOS */
 #trust{
   border-top:1px solid var(--linen-deep);
@@ -172,7 +172,7 @@ nav.scrolled{
   color:var(--ink-muted);
 }
 .trust-dot{width:4px;height:4px;border-radius:50%;background:var(--terra);flex-shrink:0}
-
+ 
 /* FEATURES */
 #features{
   padding:8rem 3rem;
@@ -191,7 +191,7 @@ nav.scrolled{
   color:var(--ink);
 }
 .section-title em{font-style:italic;color:var(--terra)}
-
+ 
 .features-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -222,7 +222,7 @@ nav.scrolled{
 .feat-desc{
   font-size:.88rem;color:var(--ink-muted);line-height:1.65;
 }
-
+ 
 /* ROOMS */
 #rooms{
   background:var(--ink);
@@ -278,7 +278,7 @@ nav.scrolled{
   content:'';display:block;width:16px;height:1px;
   background:var(--terra-light);flex-shrink:0;
 }
-
+ 
 /* STATS / COUNTERS */
 #stats{
   background:var(--terra);
@@ -299,7 +299,7 @@ nav.scrolled{
   font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
   color:rgba(255,255,255,.7);
 }
-
+ 
 /* CTA */
 #cta{
   padding:10rem 3rem;
@@ -332,7 +332,7 @@ nav.scrolled{
 .cta-contact a{color:var(--terra);text-decoration:none;font-weight:400}
 .cta-contact a:hover{text-decoration:underline}
 .cta-divider{width:1px;height:1rem;background:var(--linen-deep)}
-
+ 
 /* FOOTER */
 footer{
   background:var(--ink);
@@ -369,7 +369,7 @@ footer{
   flex-wrap:wrap;gap:1rem;
 }
 .footer-bottom p{font-size:.75rem;color:rgba(250,247,242,.25)}
-
+ 
 /* ANIMATIONS */
 @keyframes fadeUp{
   from{opacity:0;transform:translateY(24px)}
@@ -384,7 +384,7 @@ footer{
   transition:opacity .7s ease,transform .7s ease;
 }
 .reveal.visible{opacity:1;transform:none}
-
+ 
 .ornament-hr{
   display:flex;align-items:center;justify-content:center;gap:1rem;
   margin:1.5rem auto;
@@ -397,7 +397,7 @@ footer{
   font-family:var(--serif);font-style:italic;
   font-size:1.1rem;color:var(--terra);
 }
-
+ 
 @media(max-width:768px){
   nav{padding:1rem 1.5rem}
   .nav-links{display:none}
@@ -418,7 +418,7 @@ footer{
 </style>
 </head>
 <body>
-
+ 
 <nav id="navbar">
   <a href="#" class="nav-logo">Tierra Viva · Mazunte</a>
   <ul class="nav-links">
@@ -427,7 +427,7 @@ footer{
     <li><a href="#cta">Reservar</a></li>
   </ul>
 </nav>
-
+ 
 <!-- HERO -->
 <section id="hero">
   <video autoplay muted loop playsinline
@@ -453,7 +453,7 @@ footer{
     <div class="scroll-line"></div>
   </div>
 </section>
-
+ 
 <!-- TRUST BAND -->
 <div id="trust">
   <div class="trust-item">
@@ -473,7 +473,7 @@ footer{
     <span>Disponible también en plataformas: Booking &amp; Airbnb</span>
   </div>
 </div>
-
+ 
 <!-- FEATURES -->
 <section id="features">
   <div class="section-header reveal">
@@ -513,7 +513,7 @@ footer{
     </div>
   </div>
 </section>
-
+ 
 <!-- ROOMS -->
 <section id="rooms">
   <div class="rooms-inner">
@@ -573,7 +573,7 @@ footer{
     </div>
   </div>
 </section>
-
+ 
 <!-- STATS -->
 <section id="stats">
   <div class="stats-inner">
@@ -595,7 +595,7 @@ footer{
     </div>
   </div>
 </section>
-
+ 
 <!-- CTA -->
 <section id="cta">
   <div class="cta-bg"></div>
@@ -619,7 +619,7 @@ footer{
     </p>
   </div>
 </section>
-
+ 
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -650,13 +650,13 @@ footer{
     <p>No se admiten mascotas · Niños bienvenidos · No fumadores</p>
   </div>
 </footer>
-
+ 
 <script>
 const navbar=document.getElementById('navbar');
 window.addEventListener('scroll',()=>{
   navbar.classList.toggle('scrolled',window.scrollY>60);
 });
-
+ 
 const reveals=document.querySelectorAll('.reveal');
 const io=new IntersectionObserver((entries)=>{
   entries.forEach((e,i)=>{
@@ -667,7 +667,7 @@ const io=new IntersectionObserver((entries)=>{
   });
 },{threshold:.15});
 reveals.forEach(el=>io.observe(el));
-
+ 
 function animateCounter(el,target,duration=1200){
   let start=null;
   const step=ts=>{
