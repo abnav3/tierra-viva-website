@@ -398,6 +398,144 @@ footer{
   font-size:1.1rem;color:var(--terra);
 }
 
+/* ── LOADING SCREEN ── */
+#loader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--ink);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;
+  transition:opacity .8s ease, visibility .8s ease;
+}
+#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{
+  font-family:var(--serif);font-style:italic;
+  font-size:2rem;font-weight:400;color:var(--linen);
+  letter-spacing:.1em;
+  animation:loaderPulse 1.5s ease-in-out infinite;
+}
+.loader-bar{
+  width:120px;height:1px;background:rgba(250,247,242,.15);
+  position:relative;overflow:hidden;
+}
+.loader-bar::after{
+  content:'';position:absolute;left:-100%;top:0;
+  width:100%;height:100%;
+  background:var(--terra-light);
+  animation:loaderSlide 1.2s ease forwards;
+}
+@keyframes loaderPulse{
+  0%,100%{opacity:.4} 50%{opacity:1}
+}
+@keyframes loaderSlide{
+  to{left:100%}
+}
+
+/* ── CURSOR ── */
+.cursor{
+  position:fixed;top:0;left:0;z-index:9998;
+  width:8px;height:8px;
+  background:var(--terra);border-radius:50%;
+  pointer-events:none;transform:translate(-50%,-50%);
+  transition:transform .1s ease,width .3s ease,height .3s ease,opacity .3s ease;
+  mix-blend-mode:multiply;
+}
+.cursor-ring{
+  position:fixed;top:0;left:0;z-index:9997;
+  width:36px;height:36px;
+  border:1px solid rgba(139,74,47,.4);border-radius:50%;
+  pointer-events:none;transform:translate(-50%,-50%);
+  transition:transform .18s ease,width .3s ease,height .3s ease,opacity .3s ease,border-color .3s;
+}
+.cursor.hover{width:4px;height:4px}
+.cursor-ring.hover{width:52px;height:52px;border-color:var(--terra)}
+body:hover .cursor{opacity:1}
+
+/* ── PARALLAX HERO ── */
+.hero-parallax{will-change:transform}
+
+/* ── REVEAL ENHANCED ── */
+.reveal{
+  opacity:0;transform:translateY(32px);
+  transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);
+}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{
+  opacity:0;transform:translateX(-32px);
+  transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);
+}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-scale{
+  opacity:0;transform:scale(.96);
+  transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);
+}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+
+/* ── TILT 3D CARDS ── */
+.room-card{transform-style:preserve-3d;transition:background .25s,transform .1s ease,box-shadow .3s ease}
+.room-card:hover{box-shadow:0 24px 60px rgba(0,0,0,.35)}
+
+/* ── FEAT CARD LINE DRAW ── */
+.feat-card::after{
+  content:'';
+  position:absolute;bottom:0;left:0;
+  width:0;height:2px;
+  background:var(--terra-light);
+  transition:width .4s ease;
+}
+.feat-card:hover::after{width:100%}
+
+/* ── SECTION DIVIDER ── */
+.section-divider{
+  display:flex;align-items:center;justify-content:center;gap:1.5rem;
+  padding:2rem 0;max-width:1200px;margin:0 auto;
+}
+.section-divider::before,.section-divider::after{
+  content:'';flex:1;height:1px;background:var(--linen-deep);
+}
+.section-divider span{
+  font-family:var(--serif);font-style:italic;
+  color:var(--terra);font-size:1.1rem;
+}
+
+/* ── MOBILE MENU ── */
+.nav-toggle{
+  display:none;flex-direction:column;gap:5px;
+  cursor:pointer;padding:.5rem;
+  background:none;border:none;
+}
+.nav-toggle span{
+  display:block;width:22px;height:1px;
+  background:var(--ink);transition:transform .3s,opacity .3s;
+}
+nav.scrolled .nav-toggle span{background:var(--ink)}
+#hero ~ * .nav-toggle span{background:var(--ink)}
+.nav-toggle.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0}
+.nav-toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.nav-mobile{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:var(--linen);z-index:99;
+  flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;
+  opacity:0;transition:opacity .4s ease;
+}
+.nav-mobile.open{display:flex;opacity:1}
+.nav-mobile a{
+  font-family:var(--serif);font-size:2.5rem;font-weight:400;
+  color:var(--ink);text-decoration:none;
+  opacity:0;transform:translateY(20px);
+  transition:opacity .4s ease,transform .4s ease,color .2s;
+}
+.nav-mobile.open a{opacity:1;transform:none}
+.nav-mobile.open a:nth-child(1){transition-delay:.1s}
+.nav-mobile.open a:nth-child(2){transition-delay:.2s}
+.nav-mobile.open a:nth-child(3){transition-delay:.3s}
+.nav-mobile a:hover{color:var(--terra)}
+.nav-close{
+  position:absolute;top:1.5rem;right:1.5rem;
+  font-size:1.5rem;color:var(--ink-muted);
+  cursor:pointer;background:none;border:none;
+  font-family:var(--serif);
+}
+
 @media(max-width:768px){
   nav{padding:1rem 1.5rem}
   .nav-links{display:none}
@@ -414,10 +552,29 @@ footer{
   #cta{padding:6rem 1.5rem}
   .footer-inner{grid-template-columns:1fr;gap:2rem}
   .footer-bottom{flex-direction:column;text-align:center}
+  .cursor,.cursor-ring{display:none}
 }
 </style>
 </head>
 <body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">Tierra Viva</div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- MOBILE MENU -->
+<div class="nav-mobile" id="nav-mobile">
+  <button class="nav-close" id="nav-close">✕</button>
+  <a href="#features" class="mobile-link">El Hotel</a>
+  <a href="#rooms" class="mobile-link">Habitaciones</a>
+  <a href="#cta" class="mobile-link">Reservar</a>
+</div>
 
 <nav id="navbar">
   <a href="#" class="nav-logo">Tierra Viva · Mazunte</a>
@@ -426,16 +583,19 @@ footer{
     <li><a href="#rooms">Habitaciones</a></li>
     <li><a href="#cta">Reservar</a></li>
   </ul>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <video autoplay muted loop playsinline
-    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.55;">
+  <video autoplay muted loop playsinline id="hero-video"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 1.8s ease;">
     <source src="video-header-dolphins.mp4" type="video/mp4">
   </video>
-  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(28,23,19,.35) 0%,rgba(28,23,19,.55) 100%);z-index:1"></div>
-  <div class="hero-ornament" style="color:rgba(250,247,242,.04)">Mazunte</div>
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(28,23,19,.25) 0%,rgba(28,23,19,.62) 100%);z-index:1"></div>
+  <div class="hero-ornament" style="color:rgba(250,247,242,.035)">Mazunte</div>
   <div style="position:relative;z-index:2">
     <p class="hero-eyebrow">Mazunte, Oaxaca, México</p>
     <h1 class="hero-title">Casa Mazunte<br><em>Tierra Viva</em></h1>
@@ -652,43 +812,141 @@ footer{
 </footer>
 
 <script>
+/* ── LOADER ── */
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.getElementById('loader').classList.add('hidden');
+  },1200);
+});
+
+/* ── VIDEO FADE IN ── */
+const heroVideo=document.getElementById('hero-video');
+if(heroVideo){
+  heroVideo.addEventListener('canplay',()=>{
+    heroVideo.style.opacity='.6';
+  });
+}
+
+/* ── NAVBAR SCROLL ── */
 const navbar=document.getElementById('navbar');
 window.addEventListener('scroll',()=>{
   navbar.classList.toggle('scrolled',window.scrollY>60);
 });
 
-const reveals=document.querySelectorAll('.reveal');
-const io=new IntersectionObserver((entries)=>{
-  entries.forEach((e,i)=>{
+/* ── MOBILE MENU ── */
+const toggle=document.getElementById('nav-toggle');
+const mobileMenu=document.getElementById('nav-mobile');
+const closeBtn=document.getElementById('nav-close');
+if(toggle&&mobileMenu){
+  toggle.addEventListener('click',()=>{
+    toggle.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow=mobileMenu.classList.contains('open')?'hidden':'';
+  });
+  closeBtn.addEventListener('click',()=>{
+    toggle.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow='';
+  });
+  document.querySelectorAll('.mobile-link').forEach(a=>{
+    a.addEventListener('click',()=>{
+      toggle.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow='';
+    });
+  });
+}
+
+/* ── CUSTOM CURSOR ── */
+const cursor=document.getElementById('cursor');
+const ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cursor.style.left=mx+'px';cursor.style.top=my+'px';
+});
+(function animRing(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+})();
+document.querySelectorAll('a,button,.feat-card,.room-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.classList.add('hover');ring.classList.add('hover')});
+  el.addEventListener('mouseleave',()=>{cursor.classList.remove('hover');ring.classList.remove('hover')});
+});
+
+/* ── PARALLAX HERO ── */
+const heroSection=document.getElementById('hero');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  if(y<window.innerHeight){
+    const content=heroSection.querySelector('[style*="z-index:2"]');
+    if(content) content.style.transform=`translateY(${y*0.28}px)`;
+    if(heroVideo) heroVideo.style.transform=`translateY(${y*0.12}px) scale(1.05)`;
+  }
+},{passive:true});
+
+/* ── SCROLL REVEAL (staggered) ── */
+const revealEls=document.querySelectorAll('.reveal,.reveal-left,.reveal-scale');
+const revealIO=new IntersectionObserver((entries)=>{
+  let delay=0;
+  entries.forEach(e=>{
     if(e.isIntersecting){
-      setTimeout(()=>e.target.classList.add('visible'),i*80);
-      io.unobserve(e.target);
+      setTimeout(()=>e.target.classList.add('visible'),delay);
+      delay+=90;
+      revealIO.unobserve(e.target);
     }
   });
-},{threshold:.15});
-reveals.forEach(el=>io.observe(el));
+},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+revealEls.forEach(el=>revealIO.observe(el));
 
-function animateCounter(el,target,duration=1200){
+/* ── COUNTER ANIMATION ── */
+function animateCounter(el,target,duration=1400){
   let start=null;
+  const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
   const step=ts=>{
     if(!start)start=ts;
     const p=Math.min((ts-start)/duration,1);
-    el.textContent=Math.floor(p*target);
+    el.textContent=Math.floor(ease(p)*target);
     if(p<1)requestAnimationFrame(step);
     else el.textContent=target;
   };
   requestAnimationFrame(step);
 }
 const statNums=document.querySelectorAll('.stat-number[data-target]');
-const statIo=new IntersectionObserver(entries=>{
+const statIO=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
       animateCounter(e.target,+e.target.dataset.target);
-      statIo.unobserve(e.target);
+      statIO.unobserve(e.target);
     }
   });
 },{threshold:.5});
-statNums.forEach(el=>statIo.observe(el));
+statNums.forEach(el=>statIO.observe(el));
+
+/* ── TILT 3D ROOM CARDS ── */
+document.querySelectorAll('.room-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=((e.clientX-r.left)/r.width-.5)*10;
+    const y=-((e.clientY-r.top)/r.height-.5)*10;
+    card.style.transform=`perspective(800px) rotateY(${x}deg) rotateX(${y}deg) translateZ(8px)`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='perspective(800px) rotateY(0) rotateX(0) translateZ(0)';
+  });
+});
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const target=document.querySelector(a.getAttribute('href'));
+    if(target){
+      e.preventDefault();
+      target.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  });
+});
 </script>
 </body>
 </html>
