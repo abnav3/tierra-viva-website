@@ -1,694 +1,431 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Casa Mazunte Tierra Viva — Hotel Boutique en Mazunte, Oaxaca</title>
-<meta name="description" content="Hotel boutique de estilo mexicano rodeado de manglar y mucha vida en Mazunte, Oaxaca. Bungalows con cocina privada y habitaciones con cocina compartida, a 3 minutos caminando de la playa. Reserva directo por WhatsApp para un 15% de descuento.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --linen:#FAF7F2;
-  --linen-dark:#F0EBE1;
-  --linen-deep:#E2D9CC;
-  --ink:#1C1713;
-  --ink-soft:#3D3530;
-  --ink-muted:#7A6E65;
-  --terra:#8B4A2F;
-  --terra-light:#C4845C;
-  --terra-pale:#F5E8DF;
-  --sage:#4A6741;
-  --sage-light:#7A9E6E;
-  --sand:#C4A882;
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --sans:'Jost','Helvetica Neue',sans-serif;
-}
-html{scroll-behavior:smooth}
-body{
-  background:var(--linen);
-  color:var(--ink);
-  font-family:var(--sans);
-  font-weight:300;
-  line-height:1.6;
-  overflow-x:hidden;
-}
- 
-/* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1.2rem 3rem;
-  background:transparent;
-  transition:background .4s,backdrop-filter .4s;
-}
-nav.scrolled{
-  background:rgba(250,247,242,0.92);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--linen-deep);
-}
-.nav-logo{
-  font-family:var(--serif);
-  font-size:1.1rem;
-  font-weight:500;
-  letter-spacing:.08em;
-  color:var(--ink);
-  text-decoration:none;
-}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{
-  font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--ink-soft);text-decoration:none;
-  transition:color .2s;
-}
-.nav-links a:hover{color:var(--terra)}
- 
-/* HERO */
-#hero{
-  min-height:100vh;
-  display:grid;place-items:center;
-  padding:6rem 3rem 4rem;
-  position:relative;
-  overflow:hidden;
-  text-align:center;
-}
-.hero-bg{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 80%, rgba(139,74,47,.08) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 40% at 20% 20%, rgba(74,103,65,.06) 0%, transparent 60%);
-}
-.hero-ornament{
-  position:absolute;
-  font-family:var(--serif);font-style:italic;
-  font-size:22rem;font-weight:300;
-  color:rgba(139,74,47,.04);
-  line-height:1;
-  pointer-events:none;
-  user-select:none;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  white-space:nowrap;
-}
-.hero-eyebrow{
-  font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;
-  color:#C4845C;margin-bottom:1.5rem;
-  opacity:0;animation:fadeUp .8s .2s forwards;
-}
-.hero-title{
-  font-family:var(--serif);
-  font-size:clamp(3.2rem,7vw,6.5rem);
-  font-weight:400;line-height:1.08;
-  color:#FAF7F2;margin-bottom:.5rem;
-  opacity:0;animation:fadeUp .9s .35s forwards;
-}
-.hero-title em{font-style:italic;color:#C4845C}
-.hero-subtitle{
-  font-family:var(--serif);font-style:italic;
-  font-size:clamp(1.1rem,2.5vw,1.6rem);
-  color:rgba(250,247,242,.82);margin-bottom:2.5rem;
-  font-weight:300;
-  opacity:0;animation:fadeUp .9s .5s forwards;
-}
-.hero-location{
-  display:flex;align-items:center;justify-content:center;gap:.5rem;
-  font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;
-  color:rgba(250,247,242,.65);margin-bottom:3rem;
-  opacity:0;animation:fadeUp .9s .65s forwards;
-}
-.hero-location::before,.hero-location::after{
-  content:'';display:block;width:3rem;height:1px;background:rgba(250,247,242,.25);
-}
-.hero-ctas{
-  display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;
-  opacity:0;animation:fadeUp .9s .8s forwards;
-}
-.btn-primary{
-  display:inline-block;
-  padding:.85rem 2.2rem;
-  background:var(--terra);color:#fff;
-  font-family:var(--sans);font-size:.78rem;
-  letter-spacing:.14em;text-transform:uppercase;
-  text-decoration:none;
-  border:1px solid var(--terra);
-  transition:background .2s,color .2s,transform .15s;
-}
-.btn-primary:hover{background:var(--ink);border-color:var(--ink);transform:translateY(-1px)}
-.btn-ghost{
-  display:inline-block;
-  padding:.85rem 2.2rem;
-  background:transparent;color:#FAF7F2;
-  font-family:var(--sans);font-size:.78rem;
-  letter-spacing:.14em;text-transform:uppercase;
-  text-decoration:none;
-  border:1px solid rgba(250,247,242,.5);
-  transition:border-color .2s,color .2s,transform .15s;
-}
-.btn-ghost:hover{border-color:#FAF7F2;transform:translateY(-1px)}
- 
-/* SCROLL INDICATOR */
-.scroll-hint{
-  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:.5rem;
-  opacity:0;animation:fadeUp .8s 1.1s forwards;
-}
-.scroll-hint span{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,247,242,.6)}
-.scroll-line{width:1px;height:3rem;background:linear-gradient(to bottom,rgba(250,247,242,.5),transparent);animation:scrollPulse 2s 1.5s infinite}
- 
-/* BAND / TRUST LOGOS */
-#trust{
-  border-top:1px solid var(--linen-deep);
-  border-bottom:1px solid var(--linen-deep);
-  padding:1.5rem 3rem;
-  background:var(--linen-dark);
-  display:flex;align-items:center;justify-content:center;
-  gap:3rem;flex-wrap:wrap;
-}
-.trust-item{
-  display:flex;align-items:center;gap:.6rem;
-  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--ink-muted);
-}
-.trust-dot{width:4px;height:4px;border-radius:50%;background:var(--terra);flex-shrink:0}
- 
-/* FEATURES */
-#features{
-  padding:8rem 3rem;
-  max-width:1200px;margin:0 auto;
-}
-.section-header{text-align:center;margin-bottom:5rem}
-.section-tag{
-  display:inline-block;
-  font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--terra);margin-bottom:1rem;
-}
-.section-title{
-  font-family:var(--serif);
-  font-size:clamp(2rem,4vw,3.2rem);
-  font-weight:400;line-height:1.2;
-  color:var(--ink);
-}
-.section-title em{font-style:italic;color:var(--terra)}
- 
-.features-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:0;
-  border:1px solid var(--linen-deep);
-}
-.feat-card{
-  padding:3rem 2.5rem;
-  border-right:1px solid var(--linen-deep);
-  border-bottom:1px solid var(--linen-deep);
-  transition:background .25s;
-  position:relative;overflow:hidden;
-}
-.feat-card:nth-child(3n){border-right:none}
-.feat-card:nth-child(n+4){border-bottom:none}
-.feat-card:hover{background:var(--terra-pale)}
-.feat-icon{
-  font-family:var(--serif);font-style:italic;
-  font-size:2.5rem;font-weight:300;
-  color:var(--terra-light);margin-bottom:1.2rem;
-  display:block;
-}
-.feat-title{
-  font-family:var(--serif);
-  font-size:1.25rem;font-weight:500;
-  color:var(--ink);margin-bottom:.6rem;
-}
-.feat-desc{
-  font-size:.88rem;color:var(--ink-muted);line-height:1.65;
-}
- 
-/* ROOMS */
-#rooms{
-  background:var(--ink);
-  padding:8rem 3rem;
-  position:relative;overflow:hidden;
-}
-.rooms-inner{max-width:1200px;margin:0 auto}
-.rooms-header{margin-bottom:5rem}
-.rooms-header .section-tag{color:var(--terra-light)}
-.rooms-header .section-title{color:var(--linen)}
-.rooms-header .section-title em{color:var(--terra-light)}
-.rooms-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:2px;
-}
-.room-card{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-  padding:3rem;
-  position:relative;
-  transition:background .25s;
-}
-.room-card:hover{background:rgba(255,255,255,.07)}
-.room-type{
-  font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--terra-light);margin-bottom:1rem;
-}
-.room-name{
-  font-family:var(--serif);
-  font-size:1.8rem;font-weight:400;
-  color:var(--linen);margin-bottom:.8rem;
-  line-height:1.2;
-}
-.room-price{
-  font-family:var(--serif);font-style:italic;
-  font-size:1rem;color:rgba(250,247,242,.5);
-  margin-bottom:1.5rem;
-}
-.room-price strong{
-  font-style:normal;font-size:1.6rem;font-weight:400;
-  color:var(--linen);margin-right:.25rem;
-}
-.room-amenities{
-  display:flex;flex-direction:column;gap:.4rem;
-  list-style:none;
-}
-.room-amenities li{
-  font-size:.82rem;color:rgba(250,247,242,.6);
-  display:flex;align-items:center;gap:.5rem;
-}
-.room-amenities li::before{
-  content:'';display:block;width:16px;height:1px;
-  background:var(--terra-light);flex-shrink:0;
-}
- 
-/* STATS / COUNTERS */
-#stats{
-  background:var(--terra);
-  padding:5rem 3rem;
-}
-.stats-inner{
-  max-width:900px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:2rem;text-align:center;
-}
-.stat-number{
-  font-family:var(--serif);
-  font-size:3.5rem;font-weight:400;
-  color:#fff;line-height:1;
-  margin-bottom:.4rem;
-}
-.stat-label{
-  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(255,255,255,.7);
-}
- 
-/* CTA */
-#cta{
-  padding:10rem 3rem;
-  text-align:center;
-  position:relative;overflow:hidden;
-}
-.cta-bg{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 50% 70% at 50% 100%, rgba(139,74,47,.12) 0%, transparent 65%);
-}
-.cta-inner{position:relative;max-width:700px;margin:0 auto}
-.cta-title{
-  font-family:var(--serif);
-  font-size:clamp(2.5rem,5vw,4rem);
-  font-weight:400;line-height:1.15;
-  color:var(--ink);margin-bottom:1.5rem;
-}
-.cta-title em{font-style:italic;color:var(--terra)}
-.cta-text{
-  font-family:var(--serif);font-style:italic;
-  font-size:1.15rem;color:var(--ink-muted);
-  margin-bottom:3rem;line-height:1.75;
-}
-.cta-contact{
-  display:flex;align-items:center;justify-content:center;gap:2rem;
-  flex-wrap:wrap;margin-bottom:2.5rem;
-  font-size:.82rem;color:var(--ink-muted);
-}
-.cta-contact a{color:var(--terra);text-decoration:none;font-weight:400}
-.cta-contact a:hover{text-decoration:underline}
-.cta-divider{width:1px;height:1rem;background:var(--linen-deep)}
- 
-/* FOOTER */
-footer{
-  background:var(--ink);
-  padding:4rem 3rem 2.5rem;
-  color:rgba(250,247,242,.5);
-}
-.footer-inner{
-  max-width:1200px;margin:0 auto;
-  display:grid;grid-template-columns:2fr 1fr 1fr;
-  gap:4rem;margin-bottom:3rem;
-}
-.footer-brand .nav-logo{
-  color:var(--linen);display:block;margin-bottom:1rem;
-}
-.footer-brand p{
-  font-size:.85rem;line-height:1.7;
-  color:rgba(250,247,242,.45);
-  max-width:280px;
-}
-.footer-col h4{
-  font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(250,247,242,.3);margin-bottom:1.2rem;
-}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
-.footer-col a{
-  font-size:.85rem;color:rgba(250,247,242,.5);
-  text-decoration:none;transition:color .2s;
-}
-.footer-col a:hover{color:var(--terra-light)}
-.footer-bottom{
-  border-top:1px solid rgba(255,255,255,.06);
-  padding-top:1.5rem;
-  display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:1rem;
-}
-.footer-bottom p{font-size:.75rem;color:rgba(250,247,242,.25)}
- 
-/* ANIMATIONS */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(24px)}
-  to{opacity:1;transform:translateY(0)}
-}
-@keyframes scrollPulse{
-  0%,100%{opacity:.4;transform:scaleY(1)}
-  50%{opacity:1;transform:scaleY(1.1)}
-}
-.reveal{
-  opacity:0;transform:translateY(28px);
-  transition:opacity .7s ease,transform .7s ease;
-}
-.reveal.visible{opacity:1;transform:none}
- 
-.ornament-hr{
-  display:flex;align-items:center;justify-content:center;gap:1rem;
-  margin:1.5rem auto;
-}
-.ornament-hr::before,.ornament-hr::after{
-  content:'';display:block;height:1px;width:4rem;
-  background:var(--linen-deep);
-}
-.ornament-hr span{
-  font-family:var(--serif);font-style:italic;
-  font-size:1.1rem;color:var(--terra);
-}
- 
-@media(max-width:768px){
-  nav{padding:1rem 1.5rem}
-  .nav-links{display:none}
-  #hero{padding:5rem 1.5rem 3rem}
-  #trust{gap:1.5rem;padding:1.5rem}
-  #features{padding:5rem 1.5rem}
-  .features-grid{grid-template-columns:1fr}
-  .feat-card{border-right:none}
-  .feat-card:nth-child(n+4){border-bottom:1px solid var(--linen-deep)}
-  .feat-card:last-child{border-bottom:none}
-  #rooms{padding:5rem 1.5rem}
-  .rooms-grid{grid-template-columns:1fr}
-  .stats-inner{grid-template-columns:repeat(2,1fr)}
-  #cta{padding:6rem 1.5rem}
-  .footer-inner{grid-template-columns:1fr;gap:2rem}
-  .footer-bottom{flex-direction:column;text-align:center}
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Casa Mazunte · Tierra Viva — Reserva directa por WhatsApp</title>
+  <meta name="description" content="Casa Mazunte Tierra Viva — alojamiento boutique en Mazunte, Oaxaca. Reserva directa por WhatsApp +52 958 113 4155." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+  /* Hallmark · pre-emit critique: P5 H5 E5 S4 R5 V5 */
+  /* Hallmark · page: Macrostructure: Marquee Hero · Nav: N5 Floating pill · Footer: Ft5 Statement · Theme: Linen (paper: light · accent: terracotta · display: roman-serif) */
+
+  :root{
+    /* Typography tokens */
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+    /* Color tokens (OKLCH) */
+    --color-paper: oklch(96% 0.01 90);    /* linen */
+    --color-terracotta: oklch(52% 0.12 35); /* terracotta accent */
+    --color-ink: oklch(8% 0.02 260);      /* dark ink */
+    --color-muted: oklch(78% 0.01 90);    /* light muted tone */
+    --color-overlay: rgba(6,6,6,0.44);   /* overlay token (uses rgba for alpha) */
+
+    /* Spacing (4pt scale) */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+    --space-8: 64px;
+
+    /* Radii & shadow */
+    --radius: 12px;
+    --shadow-sm: 0 6px 18px rgba(10,10,10,0.08);
+
+    /* Motion */
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Text scale */
+    --text-xxs: 12px;
+    --text-xs: 13px;
+    --text-sm: 15px;
+    --text-base: 16px;
+    --text-lg: 20px;
+    --text-xl: 28px;
+    --text-display: 44px;
+  }
+
+  /* Non-negotiables per Hallmark */
+  html,body{height:100%;overflow-x:clip;margin:0}
+  body{font-family:var(--font-body);color:var(--color-ink);background:var(--color-paper);-webkit-font-smoothing:antialiased;line-height:1.45}
+
+  .container{width:100%;max-width:1080px;margin:0 auto;padding:0 var(--space-4)}
+
+  header{position:sticky;top:0;z-index:60;background:linear-gradient(to bottom, rgba(255,255,255,0.65), rgba(255,255,255,0.35));backdrop-filter: blur(6px);border-bottom:1px solid rgba(0,0,0,0.03)}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);padding:calc(var(--space-2) + 2px) 0}
+  .brand{font-family:var(--font-display);font-weight:600;font-size:18px;letter-spacing:0.4px;color:var(--color-ink)}
+  nav{display:flex;gap:var(--space-4);align-items:center}
+  nav a{font-size:var(--text-sm);color:var(--color-ink);text-decoration:none;padding:6px 8px;border-radius:8px}
+  nav a:focus-visible{outline:3px solid color-mix(in srgb, var(--color-terracotta) 14%, transparent)}
+
+  /* Primary CTA button */
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--color-terracotta);color:var(--color-paper);border:none;padding:10px 16px;border-radius:999px;font-weight:600;cursor:pointer;text-decoration:none;white-space:nowrap;box-shadow:var(--shadow-sm);transition:transform .18s var(--ease-out),box-shadow .18s var(--ease-out)}
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible{outline:3px solid color-mix(in srgb, var(--color-terracotta) 24%, transparent);outline-offset:3px}
+  .btn[aria-disabled="true"],.btn[disabled]{opacity:.5;cursor:not-allowed}
+
+  /* Hero */
+  .hero{position:relative;min-height:82vh;display:flex;align-items:center}
+  .hero-video{position:absolute;inset:0;overflow:hidden}
+  .hero-video video{width:100%;height:100%;object-fit:cover;display:block}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,var(--color-overlay) 10%, rgba(255,255,255,0.02) 40%);mix-blend-mode:multiply}
+  .hero-content{position:relative;z-index:3;color:var(--color-paper);padding:calc(var(--space-6) + 24px) 0}
+  .hero-inner{max-width:900px}
+  h1{font-family:var(--font-display);font-weight:600;font-size:var(--text-display);line-height:1.02;margin:0 0 var(--space-3);overflow-wrap:anywhere;min-width:0}
+  p.lead{font-size:var(--text-lg);margin:0 0 var(--space-4);opacity:.95}
+
+  /* Trust band */
+  .trust{background:transparent;padding:var(--space-3) 0;border-top:1px solid rgba(0,0,0,0.04);border-bottom:1px solid rgba(0,0,0,0.02)}
+  .trust-list{display:flex;gap:var(--space-6);align-items:center;flex-wrap:wrap}
+  .trust-item{font-size:var(--text-sm);color:var(--color-ink);opacity:.9}
+
+  /* Features grid */
+  .features{padding:var(--space-6) 0}
+  .grid{display:grid;gap:var(--space-4)}
+  .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.9));padding:var(--space-4);border-radius:var(--radius);box-shadow:var(--shadow-sm);min-width:0}
+  .card h3{font-family:var(--font-display);font-size:18px;margin:0 0 8px}
+  .card p{margin:0;color:var(--color-ink);opacity:.9}
+
+  /* Rooms */
+  .rooms{padding:var(--space-6) 0}
+  .rooms-grid{display:grid;gap:var(--space-4);grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .room{display:flex;flex-direction:column;gap:var(--space-3)}
+  .room-visual{height:160px;border-radius:12px;background:linear-gradient(135deg, rgba(0,0,0,0.06), rgba(0,0,0,0.02));display:flex;align-items:flex-end;padding:var(--space-3);color:var(--color-paper);font-weight:600}
+  .price{font-weight:700;color:var(--color-terracotta)}
+
+  /* Counters */
+  .counters{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-4);padding:var(--space-6) 0}
+  .counter{background:transparent;padding:var(--space-4);border-radius:10px}
+  .counter .num{font-family:var(--font-display);font-size:28px}
+  .counter .label{font-size:13px;color:var(--color-ink);opacity:.85}
+
+  /* CTA section */
+  .hero-cta{margin-top:var(--space-4)}
+
+  /* Floating WhatsApp bubble for small screens */
+  .whatsapp-bubble{position:fixed;right:var(--space-4);bottom:var(--space-4);z-index:80}
+  .bubble-btn{width:56px;height:56px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;background:var(--color-terracotta);color:var(--color-paper);box-shadow:var(--shadow-sm);border:none}
+
+  footer{padding:var(--space-6) 0;border-top:1px solid rgba(0,0,0,0.04);font-size:13px}
+  footer .footer-grid{display:grid;grid-template-columns:1fr auto;align-items:center;gap:var(--space-4)}
+
+  /* Responsive adjustments */
+  @media (max-width:720px){
+    h1{font-size:32px}
+    .header-inner{padding:8px 0}
+    nav a{display:none}
+  }
+  @media (max-width:420px){
+    h1{font-size:24px}
+    .hero{min-height:68vh}
+    /* reduce CTA in-hero to avoid wrap; show bubble instead */
+    .hero-cta .btn{font-size:14px;padding:8px 12px}
+  }
+
+  /* Accessibility: focus outline helpers */
+  :focus{outline-offset:3px}
+
+  /* Language helpers */
+  .lang-es{display:inline}
+  .lang-en{display:none}
+  [data-lang='en'] .lang-es{display:none}
+  [data-lang='en'] .lang-en{display:inline}
+
+  /* Small utilities */
+  .muted{color:var(--color-ink);opacity:.7}
+  a.small{font-size:13px}
+
+  </style>
 </head>
-<body>
- 
-<nav id="navbar">
-  <a href="#" class="nav-logo">Tierra Viva · Mazunte</a>
-  <ul class="nav-links">
-    <li><a href="#features">El Hotel</a></li>
-    <li><a href="#rooms">Habitaciones</a></li>
-    <li><a href="#cta">Reservar</a></li>
-  </ul>
-</nav>
- 
-<!-- HERO -->
-<section id="hero">
-  <video autoplay muted loop playsinline
-    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.55;">
-    <source src="video-header-dolphins.mp4" type="video/mp4">
-  </video>
-  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(28,23,19,.35) 0%,rgba(28,23,19,.55) 100%);z-index:1"></div>
-  <div class="hero-ornament" style="color:rgba(250,247,242,.04)">Mazunte</div>
-  <div style="position:relative;z-index:2">
-    <p class="hero-eyebrow">Mazunte, Oaxaca, México</p>
-    <h1 class="hero-title">Casa Mazunte<br><em>Tierra Viva</em></h1>
-    <p class="hero-subtitle">Hotel boutique entre el manglar y el mar</p>
-    <div class="hero-location">
-      <span>3 min de la playa</span>
+<body data-lang="es">
+
+  <header>
+    <div class="container header-inner">
+      <div class="brand">Casa Mazunte · Tierra Viva</div>
+      <nav aria-label="Main navigation">
+        <a href="#rooms" class="small"><span class="lang-es">Habitaciones</span><span class="lang-en">Rooms</span></a>
+        <a href="#features" class="small"><span class="lang-es">Experiencias</span><span class="lang-en">Experiences</span></a>
+        <a href="#contact" class="small"><span class="lang-es">Contacto</span><span class="lang-en">Contact</span></a>
+        <button class="btn" id="lang-toggle" aria-label="Cambiar idioma / Change language">ES · EN</button>
+      </nav>
+      <a class="btn" href="https://wa.me/529581134155?text=Hola%2C%20quiero%20reservar%20en%20Casa%20Mazunte%20Tierra%20Viva.%20Pago%20de%20reserva%20completa.%20Acepto%20las%20condiciones.%20%2F%20Full%20reservation%20payment.%20I%20accept%20the%20terms." aria-label="Reservar por WhatsApp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M20.52 3.48A11.94 11.94 0 0 0 12 .5C6.21.5 1.5 5.21 1.5 11c0 1.94.5 3.77 1.44 5.38L.5 23l6.43-2.04A11.94 11.94 0 0 0 12 22.5c5.79 0 10.5-4.71 10.5-10.5 0-3.03-1.18-5.8-3.48-7.52z" fill="currentColor"/></svg>
+        <span class="lang-es">Reservar por WhatsApp</span>
+        <span class="lang-en">Book on WhatsApp</span>
+      </a>
     </div>
-    <div class="hero-ctas">
-      <a href="https://wa.me/529581134155" class="btn-primary">Reservar vía WhatsApp</a>
-      <a href="#rooms" class="btn-ghost">Ver habitaciones</a>
-    </div>
-  </div>
-  <div class="scroll-hint">
-    <span>Descubrir</span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
- 
-<!-- TRUST BAND -->
-<div id="trust">
-  <div class="trust-item">
-    <span class="trust-dot"></span>
-    <span>Bungalows con cocina privada</span>
-  </div>
-  <div class="trust-item">
-    <span class="trust-dot"></span>
-    <span>WiFi &amp; estacionamiento gratis</span>
-  </div>
-  <div class="trust-item">
-    <span class="trust-dot"></span>
-    <span>Baño privado en todas las hab.</span>
-  </div>
-  <div class="trust-item">
-    <span class="trust-dot"></span>
-    <span>Disponible también en plataformas: Booking &amp; Airbnb</span>
-  </div>
-</div>
- 
-<!-- FEATURES -->
-<section id="features">
-  <div class="section-header reveal">
-    <span class="section-tag">El lugar</span>
-    <h2 class="section-title">Un refugio <em>lleno de vida</em><br>en el corazón de Mazunte</h2>
-  </div>
-  <div class="features-grid">
-    <div class="feat-card reveal">
-      <span class="feat-icon">♨</span>
-      <h3 class="feat-title">Rodeados del manglar</h3>
-      <p class="feat-desc">Despierta con el sonido de los pájaros. Nuestras áreas comunes con hamacas, sillas y mesas crean el ambiente perfecto para descansar y conectar.</p>
-    </div>
-    <div class="feat-card reveal">
-      <span class="feat-icon">◈</span>
-      <h3 class="feat-title">A pocos pasos de la playa</h3>
-      <p class="feat-desc">Playa El Rinconcito y Playa Mazunte a 3 minutos caminando. Punta Cometa —el punto más al sur de México— a solo 10 minutos caminando.</p>
-    </div>
-    <div class="feat-card reveal">
-      <span class="feat-icon">⌂</span>
-      <h3 class="feat-title">Cocina equipada</h3>
-      <p class="feat-desc">Los bungalows cuentan con cocina privada. Las habitaciones en planta alta tienen acceso a nuestra cocina compartida totalmente equipada y café gratis por las mañanas.</p>
-    </div>
-    <div class="feat-card reveal">
-      <span class="feat-icon">✦</span>
-      <h3 class="feat-title">Tortugas &amp; delfines</h3>
-      <p class="feat-desc">Tours de liberación de tortugas, avistamiento de delfines, ballenas y mantarrayas. La costa oaxaqueña en su forma más auténtica.</p>
-    </div>
-    <div class="feat-card reveal">
-      <span class="feat-icon">◯</span>
-      <h3 class="feat-title">Bienestar &amp; cultura</h3>
-      <p class="feat-desc">Masajes, terapias alternativas, meditación, clases de danza y surf. Mazunte es un destino para reconectar con uno mismo.</p>
-    </div>
-    <div class="feat-card reveal">
-      <span class="feat-icon">⇲</span>
-      <h3 class="feat-title">Acceso sin auto</h3>
-      <p class="feat-desc">Todo Mazunte se recorre caminando. Restaurantes a 20 metros, el Museo de la Tortuga a 10 minutos. Las playas de San Agustinillo a 12min. Sin necesidad de rentar un auto.</p>
-    </div>
-  </div>
-</section>
- 
-<!-- ROOMS -->
-<section id="rooms">
-  <div class="rooms-inner">
-    <div class="rooms-header reveal">
-      <span class="section-tag">Alojamiento</span>
-      <h2 class="section-title" style="color:var(--linen)">Seis habitaciones,<br><em>una sola experiencia</em></h2>
-    </div>
-    <div class="rooms-grid">
-      <div class="room-card reveal">
-        <p class="room-type">Bungalow · Planta baja</p>
-        <h3 class="room-name">Bungalow con cocina privada</h3>
-        <p class="room-price">desde <strong>$1,800</strong> MXN / noche</p>
-        <ul class="room-amenities">
-          <li>Capacidad hasta 4 personas</li>
-          <li>Cocina privada completa</li>
-          <li>Refrigerador, microondas, cafetera</li>
-          <li>Baño privado, A/C, ventilador</li>
-          <li>Acceso para movilidad reducida</li>
-        </ul>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="hero" aria-label="Hero">
+      <div class="hero-video" aria-hidden>
+        <!-- video element: source is added by JS depending on connection; poster fallback provided -->
+        <video id="bg-video" playsinline muted loop preload="metadata" poster="" aria-hidden></video>
       </div>
-      <div class="room-card reveal">
-        <p class="room-type">Habitación · Planta alta</p>
-        <h3 class="room-name">Habitación con balcón</h3>
-        <p class="room-price">desde <strong>$1,000</strong> MXN / noche</p>
-        <ul class="room-amenities">
-          <li>Capacidad hasta 2 personas</li>
-          <li>Balcón privado</li>
-          <li>Cocina compartida equipada</li>
-          <li>Café gratis cada mañana</li>
-          <li>Baño privado, A/C, ventilador</li>
-        </ul>
+      <div class="hero-overlay" aria-hidden></div>
+
+      <div class="container hero-content">
+        <div class="hero-inner">
+          <h1>Casa Mazunte · Tierra Viva</h1>
+          <p class="lead lang-es">Un rincón vivo en la costa de Oaxaca. Habitaciones sencillas, desayuno casero y amaneceres con delfines. Reserva directa y sin comisiones.</p>
+          <p class="lead lang-en">A living corner on Oaxaca's coast. Simple rooms, homemade breakfast and sunrises with dolphins. Book direct — no middlemen.</p>
+
+          <div class="hero-cta">
+            <a class="btn" href="https://wa.me/529581134155?text=Hola%2C%20quiero%20reservar%20en%20Casa%20Mazunte%20Tierra%20Viva.%20Fechas%3A%20%5BDD%2FMM%2FAAAA%5D%20Pago%20de%20reserva%20completa.%20Acepto%20las%20condiciones.%20%2F%20Full%20reservation%20payment.%20I%20accept%20the%20terms." id="hero-book">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M20.52 3.48A11.94 11.94 0 0 0 12 .5C6.21.5 1.5 5.21 1.5 11c0 1.94.5 3.77 1.44 5.38L.5 23l6.43-2.04A11.94 11.94 0 0 0 12 22.5c5.79 0 10.5-4.71 10.5-10.5 0-3.03-1.18-5.8-3.48-7.52z" fill="currentColor"/></svg>
+              <span class="lang-es">Reservar por WhatsApp</span>
+              <span class="lang-en">Book on WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+        <div style="margin-top:var(--space-4)" role="note" aria-label="Política de reserva">
+          <p class="muted small" style="margin:0">
+            <span class="lang-es"><strong>Política:</strong> Pago de reserva completa. Aceptamos efectivo, tarjeta o transferencia.</span>
+            <span class="lang-en"><strong>Policy:</strong> Full reservation payment. We accept cash, card, or bank transfer.</span>
+          </p>
+        </div>
+
       </div>
-      <div class="room-card reveal">
-        <p class="room-type">Habitación · Planta alta</p>
-        <h3 class="room-name">Habitación familiar</h3>
-        <p class="room-price">desde <strong>$1,200</strong> MXN / noche</p>
-        <ul class="room-amenities">
-          <li>Capacidad hasta 3 personas</li>
-          <li>Cocina compartida equipada</li>
-          <li>Café gratis cada mañana</li>
-          <li>Baño privado, A/C, ventilador</li>
-          <li>Mosquiteros incluidos</li>
-        </ul>
+    </section>
+
+    <!-- Trust band -->
+    <section class="trust">
+      <div class="container trust-list" aria-hidden>
+        <div class="trust-item"><strong class="lang-es">Reserva directa</strong><span class="lang-es"> · Sin comisiones</span><span class="lang-en">Direct booking · No commissions</span></div>
+        <div class="trust-item"><a href="https://instagram.com/mazuntetierraviva" target="_blank" rel="noopener" class="small">@mazuntetierraviva</a></div>
+        <div class="trust-item muted"><span class="lang-es">Calle Palma Real, Mazunte, Oaxaca</span><span class="lang-en">Calle Palma Real, Mazunte, Oaxaca</span></div>
       </div>
-      <div class="room-card reveal">
-        <p class="room-type">Habitación · Planta alta</p>
-        <h3 class="room-name">Habitación superior</h3>
-        <p class="room-price">desde <strong>$1,600</strong> MXN / noche</p>
-        <ul class="room-amenities">
-          <li>Capacidad hasta 4 personas</li>
-          <li>Cocina compartida equipada</li>
-          <li>Café gratis cada mañana</li>
-          <li>Baño privado, A/C, ventilador</li>
-          <li>Niños bienvenidos</li>
-        </ul>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+      <div class="container">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-4);margin-bottom:var(--space-4)">
+          <h2 style="font-family:var(--font-display);margin:0;font-size:22px">¿Por qué elegirnos?</h2>
+          <div class="muted small lang-es">6 razones para desconectar</div>
+          <div class="muted small lang-en">6 reasons to unplug</div>
+        </div>
+
+        <div class="grid cols-3">
+          <article class="card">
+            <h3 class="lang-es">Contacto con la naturaleza</h3>
+            <h3 class="lang-en">Close to nature</h3>
+            <p class="lang-es">Despierta con sonidos del mar y jardines nativos alrededor de la casa.</p>
+            <p class="lang-en">Wake to the sound of the sea and native gardens around the house.</p>
+          </article>
+          <article class="card">
+            <h3 class="lang-es">Desayuno casero</h3>
+            <h3 class="lang-en">Homemade breakfast</h3>
+            <p class="lang-es">Productos locales y recetas de la región cada mañana.</p>
+            <p class="lang-en">Local produce and regional recipes every morning.</p>
+          </article>
+          <article class="card">
+            <h3 class="lang-es">Cercanía a la playa</h3>
+            <h3 class="lang-en">Minutes to the beach</h3>
+            <p class="lang-es">Mazunte está a pocos pasos: arena, mar y atardeceres inolvidables.</p>
+            <p class="lang-en">Mazunte is just a short walk away: sand, sea and unforgettable sunsets.</p>
+          </article>
+          <article class="card">
+            <h3 class="lang-es">Experiencias locales</h3>
+            <h3 class="lang-en">Local experiences</h3>
+            <p class="lang-es">Tours, talleres artesanales y rutas por la costa con guías locales.</p>
+            <p class="lang-en">Tours, craft workshops and coastal routes with local guides.</p>
+          </article>
+          <article class="card">
+            <h3 class="lang-es">Atención personalizada</h3>
+            <h3 class="lang-en">Personal service</h3>
+            <p class="lang-es">Reservas directas por WhatsApp — nos adaptamos a tus fechas y necesidades.</p>
+            <p class="lang-en">Direct WhatsApp bookings — we adapt to your dates and needs.</p>
+          </article>
+          <article class="card">
+            <h3 class="lang-es">Compromiso local</h3>
+            <h3 class="lang-en">Local commitment</h3>
+            <p class="lang-es">Trabajamos con productores y comunidades de la región.</p>
+            <p class="lang-en">We work with local producers and communities.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rooms -->
+    <section id="rooms" class="rooms">
+      <div class="container">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-4);margin-bottom:var(--space-4)">
+          <h2 style="font-family:var(--font-display);margin:0;font-size:22px">Habitaciones</h2>
+          <div class="muted small lang-es">Precios en MXN — confirma por WhatsApp</div>
+          <div class="muted small lang-en">Prices in MXN — confirm via WhatsApp</div>
+        </div>
+
+        <div class="rooms-grid">
+          <article class="card room">
+            <div class="room-visual"><div>Bungalow</div></div>
+            <div>
+              <div class="muted">2 personas</div>
+              <div class="price">Desde $1,800 MXN</div>
+            </div>
+            <div>
+              <a class="btn" href="https://wa.me/529581134155?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20Bungalow.%20Pago%20de%20reserva%20completa.%20Acepto%20las%20condiciones.%20%2F%20Full%20reservation%20payment.%20I%20accept%20the%20terms." aria-label="Reservar Bungalow por WhatsApp"><span class="lang-es">Reservar por WhatsApp</span><span class="lang-en">Book on WhatsApp</span></a>
+            </div>
+          </article>
+
+          <article class="card room">
+            <div class="room-visual"><div>Habitación con balcón</div></div>
+            <div>
+              <div class="muted">2 personas</div>
+              <div class="price">Desde $1,000 MXN</div>
+            </div>
+            <div>
+              <a class="btn" href="https://wa.me/529581134155?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20Habitaci%C3%B3n%20con%20balc%C3%B3n.%20Pago%20de%20reserva%20completa.%20Acepto%20las%20condiciones.%20%2F%20Full%20reservation%20payment.%20I%20accept%20the%20terms." aria-label="Reservar habitación con balcón por WhatsApp"><span class="lang-es">Reservar por WhatsApp</span><span class="lang-en">Book on WhatsApp</span></a>
+            </div>
+          </article>
+
+          <article class="card room">
+            <div class="room-visual"><div>Habitación familiar</div></div>
+            <div>
+              <div class="muted">2 personas</div>
+              <div class="price">Desde $1,200 MXN</div>
+            </div>
+            <div>
+              <a class="btn" href="https://wa.me/529581134155?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20Habitaci%C3%B3n%20familiar.%20Pago%20de%20reserva%20completa.%20Acepto%20las%20condiciones.%20%2F%20Full%20reservation%20payment.%20I%20accept%20the%20terms." aria-label="Reservar habitación familiar por WhatsApp"><span class="lang-es">Reservar por WhatsApp</span><span class="lang-en">Book on WhatsApp</span></a>
+            </div>
+          </article>
+
+          <article class="card room">
+            <div class="room-visual"><div>Habitación superior</div></div>
+            <div>
+              <div class="muted">2 personas</div>
+              <div class="price">Desde $1,600 MXN</div>
+            </div>
+            <div>
+              <a class="btn" href="https://wa.me/529581134155?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20Habitaci%C3%B3n%20superior.%20Pago%20de%20reserva%20completa.%20Acepto%20las%20condiciones.%20%2F%20Full%20reservation%20payment.%20I%20accept%20the%20terms." aria-label="Reservar habitación superior por WhatsApp"><span class="lang-es">Reservar por WhatsApp</span><span class="lang-en">Book on WhatsApp</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Counters -->
+    <section class="counters container" aria-label="Contadores">
+      <div class="counter">
+        <div class="num" data-target="4">0</div>
+        <div class="label lang-es">Habitaciones</div>
+        <div class="label lang-en">Rooms</div>
+      </div>
+      <div class="counter">
+        <div class="num" data-target="6">0</div>
+        <div class="label lang-es">Razones para volver</div>
+        <div class="label lang-en">Reasons to return</div>
+      </div>
+    </section>
+
+    <!-- CTA strip -->
+    <section id="contact" style="padding:var(--space-6) 0;background:transparent">
+      <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap">
+        <div>
+          <h3 style="font-family:var(--font-display);margin:0">Reserva directa</h3>
+          <p class="muted" style="margin:6px 0 0"><span class="lang-es">Contacta por WhatsApp</span><span class="lang-en">Contact via WhatsApp</span> · <strong>+52 958 113 4155</strong></p>
+        </div>
+        <div>
+          <a class="btn" href="https://wa.me/529581134155?text=Hola%2C%20quiero%20reservar%20en%20Casa%20Mazunte%20Tierra%20Viva.%20Pago%20de%20reserva%20completa.%20Acepto%20las%20condiciones.%20%2F%20Full%20reservation%20payment.%20I%20accept%20the%20terms." aria-label="Reservar por WhatsApp principal">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M20.52 3.48A11.94 11.94 0 0 0 12 .5C6.21.5 1.5 5.21 1.5 11c0 1.94.5 3.77 1.44 5.38L.5 23l6.43-2.04A11.94 11.94 0 0 0 12 22.5c5.79 0 10.5-4.71 10.5-10.5 0-3.03-1.18-5.8-3.48-7.52z" fill="currentColor"/></svg>
+            <span class="lang-es">Reservar por WhatsApp</span>
+            <span class="lang-en">Book on WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Floating WhatsApp bubble (mobile) -->
+  <div class="whatsapp-bubble" aria-hidden>
+    <a class="bubble-btn" href="https://wa.me/529581134155?text=Hola%2C%20quiero%20reservar%20en%20Casa%20Mazunte%20Tierra%20Viva.%20Pago%20de%20reserva%20completa.%20Acepto%20las%20condiciones.%20%2F%20Full%20reservation%20payment.%20I%20accept%20the%20terms." aria-label="WhatsApp">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M20.52 3.48A11.94 11.94 0 0 0 12 .5C6.21.5 1.5 5.21 1.5 11c0 1.94.5 3.77 1.44 5.38L.5 23l6.43-2.04A11.94 11.94 0 0 0 12 22.5c5.79 0 10.5-4.71 10.5-10.5 0-3.03-1.18-5.8-3.48-7.52z" fill="currentColor"/></svg>
+    </a>
+  </div>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div style="font-weight:600">Casa Mazunte · Tierra Viva</div>
+        <div class="muted">Calle Palma Real, Mazunte, Oaxaca · Instagram <a href="https://instagram.com/mazuntetierraviva" target="_blank" rel="noopener">@mazuntetierraviva</a></div>
+      </div>
+      <div style="text-align:right">
+        <div class="small muted">Si prefieres, también estamos en:</div>
+        <div style="margin-top:6px"><a href="#" class="small">Booking.com</a> · <a href="#" class="small">Airbnb</a></div>
       </div>
     </div>
-  </div>
-</section>
- 
-<!-- STATS -->
-<section id="stats">
-  <div class="stats-inner">
-    <div class="reveal">
-      <div class="stat-number" data-target="6">0</div>
-      <div class="stat-label">Habitaciones</div>
-    </div>
-    <div class="reveal">
-      <div class="stat-number" data-target="3">0</div>
-      <div class="stat-label">Min a la playa</div>
-    </div>
-    <div class="reveal">
-      <div class="stat-number" data-target="10">0</div>
-      <div class="stat-label">Min a Punta Cometa</div>
-    </div>
-    <div class="reveal">
-      <div class="stat-number" data-target="47">0</div>
-      <div class="stat-label">Km del aeropuerto</div>
-    </div>
-  </div>
-</section>
- 
-<!-- CTA -->
-<section id="cta">
-  <div class="cta-bg"></div>
-  <div class="cta-inner">
-    <div class="ornament-hr"><span>✦</span></div>
-    <h2 class="cta-title reveal">¿Listo para tu<br><em>escapada a Mazunte?</em></h2>
-    <p class="cta-text reveal">Escríbenos por WhatsApp para reserva directa 15% más barato que en plataformas. Te respondemos con disponibilidad y tarifas al momento.</p>
-    <div class="cta-contact reveal">
-      <a href="https://wa.me/529581134155">+52 958 113 4155</a>
-      <div class="cta-divider"></div>
-      <a href="https://instagram.com/mazuntetierraviva">@mazuntetierraviva</a>
-      <div class="cta-divider"></div>
-      <span>Calle Palma Real, Mazunte, Oaxaca</span>
-    </div>
-    <div class="reveal" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-      <a href="https://wa.me/529581134155" class="btn-primary">Reservar por WhatsApp y ahorra hasta un 15%</a>
-      <a href="https://www.booking.com/hotel/mx/tierra-viva-cabins.html" class="btn-ghost">Buscar en Booking</a>
-    </div>
-    <p class="reveal" style="margin-top:2rem;font-size:.8rem;color:var(--ink-muted)">
-      Check-in 14:00–20:00 · Check-out 10:30–11:00 · Requiere aviso previo de llegada
-    </p>
-  </div>
-</section>
- 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="#" class="nav-logo">Casa Mazunte Tierra Viva</a>
-      <p>Hotel boutique de estilo mexicano rodeado de manglar, entre las playas de Mazunte y la selva oaxaqueña.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Navegar</h4>
-      <ul>
-        <li><a href="#features">El Hotel</a></li>
-        <li><a href="#rooms">Habitaciones</a></li>
-        <li><a href="#cta">Contacto</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Reservas</h4>
-      <ul>
-        <li><a href="https://wa.me/529581134155">WhatsApp directo</a></li>
-        <li><a href="https://www.booking.com/hotel/mx/tierra-viva-cabins.html">Booking.com</a></li>
-        <li><a href="https://www.airbnb.com">Airbnb</a></li>
-        <li><a href="https://instagram.com/mazuntetierraviva">Instagram</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2025 Casa Mazunte Tierra Viva · Mazunte, San Pedro Pochutla, Oaxaca, México</p>
-    <p>No se admiten mascotas · Niños bienvenidos · No fumadores</p>
-  </div>
-</footer>
- 
-<script>
-const navbar=document.getElementById('navbar');
-window.addEventListener('scroll',()=>{
-  navbar.classList.toggle('scrolled',window.scrollY>60);
-});
- 
-const reveals=document.querySelectorAll('.reveal');
-const io=new IntersectionObserver((entries)=>{
-  entries.forEach((e,i)=>{
-    if(e.isIntersecting){
-      setTimeout(()=>e.target.classList.add('visible'),i*80);
-      io.unobserve(e.target);
+  </footer>
+
+  <script>
+  // Minimal JS: language toggle, counters, lazy-load video based on connection
+  (function(){
+    const body = document.body;
+    const langBtn = document.getElementById('lang-toggle');
+    langBtn.addEventListener('click', ()=>{
+      const next = body.getAttribute('data-lang') === 'es' ? 'en' : 'es';
+      body.setAttribute('data-lang', next);
+      langBtn.textContent = next === 'es' ? 'ES · EN' : 'ES · EN';
+    });
+
+    // Counters (animate only to known counts; values are derived from brief)
+    function animateCounter(el,target){
+      if (prefersReducedMotion()) { el.textContent = target; return }
+      let start=0;const dur=1100;const startTime=performance.now();
+      function tick(now){
+        const t=Math.min(1,(now-startTime)/dur);
+        const v=Math.floor(t*target);
+        el.textContent = v;
+        if(t<1) requestAnimationFrame(tick); else el.textContent = target;
+      }
+      requestAnimationFrame(tick);
     }
-  });
-},{threshold:.15});
-reveals.forEach(el=>io.observe(el));
- 
-function animateCounter(el,target,duration=1200){
-  let start=null;
-  const step=ts=>{
-    if(!start)start=ts;
-    const p=Math.min((ts-start)/duration,1);
-    el.textContent=Math.floor(p*target);
-    if(p<1)requestAnimationFrame(step);
-    else el.textContent=target;
-  };
-  requestAnimationFrame(step);
-}
-const statNums=document.querySelectorAll('.stat-number[data-target]');
-const statIo=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      animateCounter(e.target,+e.target.dataset.target);
-      statIo.unobserve(e.target);
+    function prefersReducedMotion(){ return window.matchMedia('(prefers-reduced-motion: reduce)').matches }
+
+    document.querySelectorAll('.num').forEach(el=>{
+      const target = parseInt(el.getAttribute('data-target')||'0',10);
+      // animate when visible
+      const io = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){ animateCounter(el,target); io.disconnect(); }
+        });
+      },{threshold:0.4});
+      io.observe(el);
+    });
+
+    // Video lazy load: only load video on fast connections or on user interaction
+    const vid = document.getElementById('bg-video');
+    const src = 'video-header-dolphins.mp4';
+    const conn = navigator.connection && navigator.connection.effectiveType;
+    const allowAuto = (conn ? conn === '4g' : true);
+    if(allowAuto){
+      const s = document.createElement('source'); s.src = src; s.type = 'video/mp4'; vid.appendChild(s); try{ vid.play().catch(()=>{}); }catch(e){}
+    } else {
+      // show a lightweight poster and attach play-on-click to load video
+      vid.setAttribute('poster','');
+      const playHint = document.createElement('button');
+      playHint.textContent = '▶';
+      playHint.style.cssText = 'position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:4;padding:14px 18px;border-radius:50%;background:rgba(0,0,0,0.5);color:white;border:none;font-size:18px';
+      playHint.addEventListener('click', ()=>{ const s = document.createElement('source'); s.src = src; s.type='video/mp4'; vid.appendChild(s); vid.play().catch(()=>{}); playHint.remove(); });
+      document.querySelector('.hero-video').appendChild(playHint);
     }
-  });
-},{threshold:.5});
-statNums.forEach(el=>statIo.observe(el));
-</script>
+
+    // Small enhancement: open WhatsApp links in a new tab on desktop, default on mobile (leave anchor behaviours native)
+    // No further JS to keep bundle light.
+
+  })();
+  </script>
+
 </body>
 </html>
