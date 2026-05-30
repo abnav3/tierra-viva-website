@@ -413,7 +413,8 @@ footer{background:var(--footer-bg);padding:4rem 2rem 2.5rem;color:rgba(250,247,2
   max-width:1200px;margin:0 auto;
   display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;margin-bottom:3rem;
 }
-.footer-brand .nav-logo{color:var(--linen);display:block;margin-bottom:1rem}
+  /* Ensure footer brand remains visible in both light and dark themes */
+  .footer-brand .nav-logo{color:var(--rooms-text);display:block;margin-bottom:1rem}
 .footer-brand p{font-size:.83rem;line-height:1.7;color:rgba(250,247,242,.45);max-width:280px}
 .footer-col h4{
   font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;
