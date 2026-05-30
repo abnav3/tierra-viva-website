@@ -848,7 +848,8 @@ const i18n={
     'footer.nav':'Navigate','footer.reservations':'Bookings','footer.hotel':'The Hotel',
     'footer.rooms':'Rooms','footer.contact':'Contact','footer.whatsapp':'Direct WhatsApp',
     'footer.copy':'© 2026 Casa Mazunte Tierra Viva · Mazunte, Santa María Tonameca, Oaxaca, Mexico',
-    'footer.policies':'Out of respect for the local wildlife, pets are not allowed · Children of all ages are welcome · Smoking is permitted only in open areas':'🌙'
+    'footer.policies':'Out of respect for the local wildlife, pets are not allowed · Children of all ages are welcome · Smoking is permitted only in open areas',
+    'theme.label':'🌙'
   },
   fr:{
     'nav.hotel':'L\'Hôtel','nav.rooms':'Chambres','nav.book':'Réserver',
@@ -1068,8 +1069,12 @@ document.querySelectorAll('.room-card').forEach(card=>{
 /* ── SMOOTH SCROLL ── */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+    const href = a.getAttribute('href');
+    // ignore empty hashes ("#") or missing hrefs
+    if(!href || href === '#') return;
+    let t = null;
+    try{ t = document.querySelector(href); }catch(err){ t = null; }
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
   });
 });
 </script>
