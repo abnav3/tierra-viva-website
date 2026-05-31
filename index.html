@@ -56,6 +56,13 @@
   --shadow:0 8px 40px rgba(0,0,0,.4);
 }
 
+[data-theme="dark"] .feat-icon svg{
+  filter:brightness(1.25);
+}
+[data-theme="dark"] .feat-icon svg .n{
+  stroke:var(--ink-soft)!important;
+}
+
 html{scroll-behavior:smooth}
 body{
   background:var(--linen);
@@ -777,6 +784,20 @@ footer{background:var(--footer-bg);padding:4rem 2rem 2.5rem;color:rgba(250,247,2
         </ul>
       </div>
     </div>
+
+    <div class="rooms-booking reveal" style="margin-top:3rem;text-align:center">
+      <h3 data-i18n="rooms.booking.title" style="font:500 1.25rem/1.4 var(--serif);color:var(--rooms-text);margin-bottom:1.5rem">Reserva directa — sin comisiones</h3>
+      <div id="widgetHolder_zisu5nw2q"></div>
+      <script>
+        (function (w, d, s, o, f, js, fjs) {
+          if (w[o]) return;
+          w['BB-Widget'] = o; w[o] = w[o] || function () { (w[o].q = w[o].q || []).push(arguments) };
+          js = d.createElement(s), fjs = d.getElementsByTagName(s)[0];
+          js.id = o; js.src = f; js.async = 1; fjs.parentNode.insertBefore(js, fjs);
+        }(window, document, 'script', 'w1', 'https://bed-booking.com/widget/widget.js'));
+        w1('init', {targetElementId: 'widgetHolder_zisu5nw2q',widgetId: '1935fb23b53272592bcdc0e1c0657e35e2c714b5', type:'calendar'})
+      </script>
+    </div>
   </div>
 </section>
 
@@ -875,6 +896,7 @@ const i18n={
     'feat6.desc':'Todo Mazunte se recorre caminando. Restaurantes a 20 metros, el Museo de la Tortuga a 10 minutos. Las playas de San Agustinillo a 12 minutes.',
     'rooms.tag':'Alojamiento',
     'rooms.title':'Seis habitaciones,<br><em>una sola experiencia</em>',
+    'rooms.booking.title':'Reserva directa — sin comisiones',
     'room1.type':'Bungalow · Planta baja','room1.name':'Bungalow con cocina privada',
     'room1.price':'desde <strong>$1,800</strong> MXN / noche',
     'room1.a1':'Capacidad hasta 4 personas','room1.a2':'Cocina privada completa',
@@ -934,6 +956,7 @@ const i18n={
     'feat6.desc':'All of Mazunte is walkable. Restaurants 20 meters away, the Turtle Museum 10 minutes on foot. San Agustinillo and Mermejita beaches 12 minutes.',
     'rooms.tag':'Accommodation',
     'rooms.title':'Six rooms,<br><em>one single experience</em>',
+    'rooms.booking.title':'Direct booking — no commissions',
     'room1.type':'Bungalow · Ground floor','room1.name':'Bungalow with private kitchen',
     'room1.price':'from <strong>$1,800</strong> MXN / night',
     'room1.a1':'Up to 4 guests','room1.a2':'Full private kitchen',
@@ -993,6 +1016,7 @@ const i18n={
     'feat6.desc':'Tout Mazunte se fait à pied. Restaurants à 20 mètres, le Musée de la Tortue à 10 minutes. Plages de San Agustinillo et Mermejita à 12 minutes.',
     'rooms.tag':'Hébergement',
     'rooms.title':'Six chambres,<br><em>une seule expérience</em>',
+    'rooms.booking.title':'Réservation directe — sans commission',
     'room1.type':'Bungalow · Rez-de-chaussée','room1.name':'Bungalow avec cuisine privée',
     'room1.price':'à partir de <strong>$1 800</strong> MXN / nuit',
     'room1.a1':'Jusqu\'à 4 personnes','room1.a2':'Cuisine privée complète',
