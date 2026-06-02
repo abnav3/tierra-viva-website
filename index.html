@@ -1324,7 +1324,28 @@ footer{background:var(--footer-bg);padding:4rem 2rem 2.5rem;color:rgba(250,247,2
           <label data-i18n="bf.checkout" for="bf-checkout">Salida</label>
           <input type="date" id="bf-checkout" required>
         </div>
-        <button type="submit" data-i18n="bf.btn" class="btn-primary bf-full">Enviar solicitud por WhatsApp</button>
+        <div class="bf-full">
+          <label data-i18n="bf.name" for="bf-name">Nombre</label>
+          <input type="text" id="bf-name" required placeholder="Tu nombre">
+        </div>
+        <div class="bf-full">
+          <label data-i18n="bf.phone" for="bf-phone">Teléfono</label>
+          <input type="tel" id="bf-phone" required placeholder="+52 958 113 4155">
+        </div>
+        <div class="bf-full">
+          <label data-i18n="bf.pay" for="bf-pay">Método de pago</label>
+          <select id="bf-pay" required>
+            <option value="Transferencia bancaria">Transferencia bancaria</option>
+            <option value="Depósito">Depósito</option>
+            <option value="Tarjeta de crédito/débito">Tarjeta de crédito/débito</option>
+          </select>
+        </div>
+        <div class="bf-full" id="price-preview" style="display:none;text-align:center;padding:.6rem;border:1px solid var(--rooms-border);border-radius:2px;background:rgba(255,255,255,.04)">
+          <div style="font-size:1.2rem;font-weight:400;color:var(--rooms-text)">$<span id="pp-night">0</span> <span style="font-size:.75rem;color:var(--rooms-muted)">/ noche</span></div>
+          <div style="font-size:.82rem;color:var(--rooms-muted)"><span id="pp-guests">2</span> huéspedes · <span id="pp-nights">0</span> noches</div>
+          <div style="font-size:1.4rem;font-weight:500;color:var(--terra-light);margin-top:.2rem">Total: $<span id="pp-total">0</span></div>
+        </div>
+        <button type="submit" data-i18n="bf.btn" class="btn-primary bf-full">Confirmar disponibilidad vía WhatsApp</button>
       </form>
     </div>
   </div>
@@ -1448,7 +1469,8 @@ const i18n={
     'rooms.booking.title':'Reserva directa — sin comisiones',
     'bf.help':'Selecciona tus datos y te enviamos la solicitud por WhatsApp',
     'bf.room':'Habitación','bf.guests':'Huéspedes','bf.checkin':'Llegada','bf.checkout':'Salida',
-    'bf.select':'Seleccionar','bf.btn':'Enviar solicitud por WhatsApp',
+    'bf.select':'Seleccionar','bf.btn':'Confirmar disponibilidad vía WhatsApp',
+    'bf.name':'Nombre','bf.phone':'Teléfono','bf.pay':'Método de pago',
     'room1.type':'Bungalow Tierra · Planta baja','room1.name':'Bungalow Tierra con cocina privada',
     'room1.price':'desde <strong>$1,800</strong> MXN / noche <span style="display:block;font-size:.7rem;font-style:normal;opacity:.7">Precio base 2 personas · $300 por persona extra</span>',
     'room1.a1':'Capacidad hasta 4 personas','room1.a2':'Cocina privada completa',
@@ -1522,7 +1544,8 @@ const i18n={
     'rooms.booking.title':'Direct booking — no commissions',
     'bf.help':'Fill in your details and we\'ll send you the request via WhatsApp',
     'bf.room':'Room','bf.guests':'Guests','bf.checkin':'Check-in','bf.checkout':'Check-out',
-    'bf.select':'Select','bf.btn':'Send request via WhatsApp',
+    'bf.select':'Select','bf.btn':'Confirm availability via WhatsApp',
+    'bf.name':'Name','bf.phone':'Phone','bf.pay':'Payment method',
     'gallery.tag':'Gallery',
     'gallery.title':'Make yourself&nbsp;<em>at home</em>',
     'gal.all':'All','gal.common':'Common Areas','gal.kitchen':'Kitchen','gal.mazunte':'Mazunte',
@@ -1599,7 +1622,8 @@ const i18n={
     'rooms.booking.title':'Réservation directe — sans commission',
     'bf.help':'Remplissez vos données et nous vous envoyons la demande par WhatsApp',
     'bf.room':'Chambre','bf.guests':'Personnes','bf.checkin':'Arrivée','bf.checkout':'Départ',
-    'bf.select':'Choisir','bf.btn':'Envoyer la demande par WhatsApp',
+    'bf.select':'Choisir','bf.btn':'Confirmer la disponibilité par WhatsApp',
+    'bf.name':'Nom','bf.phone':'Téléphone','bf.pay':'Moyen de paiement',
     'gallery.tag':'Galerie',
     'gallery.title':'Faites comme&nbsp;<em>chez vous</em>',
     'gal.all':'Tout','gal.common':'Espaces Communs','gal.kitchen':'Cuisine','gal.mazunte':'Mazunte',
@@ -1941,6 +1965,31 @@ const maxGuests={
 
 const bfRoom=document.getElementById('bf-room');
 const bfGuests=document.getElementById('bf-guests');
+const bfCheckin=document.getElementById('bf-checkin');
+const bfCheckout=document.getElementById('bf-checkout');
+const ppEl=document.getElementById('price-preview');
+const ppNight=document.getElementById('pp-night');
+const ppGuests=document.getElementById('pp-guests');
+const ppNights=document.getElementById('pp-nights');
+const ppTotal=document.getElementById('pp-total');
+
+function calcPrice(){
+  const room=bfRoom.value;
+  const guests=parseInt(bfGuests.value);
+  const ci=bfCheckin.value,co=bfCheckout.value;
+  if(!room||!ci||!co){ppEl.style.display='none';return}
+  const nights=Math.round((new Date(co)-new Date(ci))/86400000);
+  if(nights<1){ppEl.style.display='none';return}
+  const base=parseInt(room.match(/\((\$)?([\d,]+)\)/)?.[2]?.replace(',','')||'0',10);
+  const extra=Math.max(0,guests-2);
+  const pn=base+extra*300;
+  const total=pn*nights;
+  ppNight.textContent=pn.toLocaleString('es-MX');
+  ppGuests.textContent=guests;
+  ppNights.textContent=nights;
+  ppTotal.textContent=total.toLocaleString('es-MX');
+  ppEl.style.display='block';
+}
 
 bfRoom.addEventListener('change',function(){
   const max=maxGuests[this.value]||4;
@@ -1952,45 +2001,48 @@ bfRoom.addEventListener('change',function(){
     if(i===Math.min(cur||2,max)) opt.selected=true;
     bfGuests.appendChild(opt);
   }
+  calcPrice();
 });
+bfGuests.addEventListener('change',calcPrice);
+bfCheckin.addEventListener('change',calcPrice);
+bfCheckout.addEventListener('change',calcPrice);
 
 function sendBooking(e){
   e.preventDefault();
   const room=bfRoom.value;
   const guests=parseInt(bfGuests.value);
-  const checkin=document.getElementById('bf-checkin').value;
-  const checkout=document.getElementById('bf-checkout').value;
-  if(!room||!checkin||!checkout) return false;
+  const name=document.getElementById('bf-name').value.trim();
+  const phone=document.getElementById('bf-phone').value.trim();
+  const pay=document.getElementById('bf-pay').value;
+  const checkin=bfCheckin.value;
+  const checkout=bfCheckout.value;
+  if(!room||!checkin||!checkout||!name||!phone) return false;
   const max=maxGuests[room]||4;
   if(guests>max){alert(`Esta habitación admite máximo ${max} persona(s).`);return false}
   const fmt=d=>{const p=d.split('-');return `${p[2]}/${p[1]}/${p[0]}`};
   const nights=Math.round((new Date(checkout)-new Date(checkin))/86400000);
   if(nights<1){alert('La salida debe ser después de la llegada.');return false}
-  const basePrice=parseInt(room.match(/\((\$)?([\d,]+)\)/)?.[2]?.replace(',','')||'0',10);
+  const base=parseInt(room.match(/\((\$)?([\d,]+)\)/)?.[2]?.replace(',','')||'0',10);
   const extra=Math.max(0,guests-2);
-  const extraCost=extra*300*nights;
-  const total=basePrice*nights+extraCost;
-  let detail=`Hola, quiero reservar en Casa Mazunte Tierra Viva.%0A%0A`+
+  const pn=base+extra*300;
+  const total=pn*nights;
+  const totFmt=total.toLocaleString('es-MX');
+  const msg=`Hola, quiero reservar en Casa Mazunte Tierra Viva.%0A%0A`+
+    `Nombre: ${name}%0A`+
+    `Teléfono: ${phone}%0A`+
     `Habitación: ${room}%0A`+
     `Llegada: ${fmt(checkin)}%0A`+
     `Salida: ${fmt(checkout)}%0A`+
     `Huéspedes: ${guests}%0A`+
-    `Noches: ${nights}%0A`;
-  if(extra>0){
-    const pn=basePrice+extra*300;
-    detail+=`Precio por noche: $${pn} ($${basePrice} base + $${extra*300} extra)%0A`+
-      `Precio base: $${basePrice} x ${nights} noches = $${basePrice*nights}%0A`+
-      `Personas extra: ${extra} x $300 x ${nights} noches = $${extraCost}%0A`;
-  } else {
-    detail+=`Precio por noche: $${basePrice}%0A`;
-  }
-  detail+=`Total estimado: $${total} MXN%0A%0A`+
-    `Pago de reserva completa. Acepto las condiciones.`;
-  window.open(`https://wa.me/529581134155?text=${detail}`,'_blank');
+    `Noches: ${nights}%0A`+
+    `Método de pago: ${pay}%0A%0A`+
+    `Total estimado: $${totFmt} MXN%0A%0A`+
+    `Acepto pago de reserva completa y acepto las condiciones.`;
+  window.open(`https://wa.me/529581134155?text=${msg}`,'_blank');
   return false;
 }
 // Set min date on booking form inputs to today
-(function(){const t=new Date();const d=t.toISOString().split('T')[0];const ci=document.getElementById('bf-checkin');const co=document.getElementById('bf-checkout');if(ci){ci.min=d;ci.value=d}if(co){co.min=d;co.value=d}})();
+(function(){const t=new Date();const d=t.toISOString().split('T')[0];if(bfCheckin){bfCheckin.min=d}if(bfCheckout){bfCheckout.min=d}})();
 </script>
 </body>
 </html>
