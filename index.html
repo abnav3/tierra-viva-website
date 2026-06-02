@@ -1471,6 +1471,7 @@ const i18n={
     'bf.room':'Habitación','bf.guests':'Huéspedes','bf.checkin':'Llegada','bf.checkout':'Salida',
     'bf.select':'Seleccionar','bf.btn':'Confirmar disponibilidad vía WhatsApp',
     'bf.name':'Nombre','bf.phone':'Teléfono','bf.pay':'Método de pago',
+    'terms.accept':'Acepto los términos y condiciones. Se requiere el pago total y comprobante para confirmar la reserva.',
     'room1.type':'Bungalow Tierra · Planta baja','room1.name':'Bungalow Tierra con cocina privada',
     'room1.price':'desde <strong>$1,800</strong> MXN / noche <span style="display:block;font-size:.7rem;font-style:normal;opacity:.7">Precio base 2 personas · $300 por persona extra</span>',
     'room1.a1':'Capacidad hasta 4 personas','room1.a2':'Cocina privada completa',
@@ -1546,6 +1547,7 @@ const i18n={
     'bf.room':'Room','bf.guests':'Guests','bf.checkin':'Check-in','bf.checkout':'Check-out',
     'bf.select':'Select','bf.btn':'Confirm availability via WhatsApp',
     'bf.name':'Name','bf.phone':'Phone','bf.pay':'Payment method',
+    'terms.accept':'I accept the terms and conditions. Full payment and proof of payment are required to confirm the reservation.',
     'gallery.tag':'Gallery',
     'gallery.title':'Make yourself&nbsp;<em>at home</em>',
     'gal.all':'All','gal.common':'Common Areas','gal.kitchen':'Kitchen','gal.mazunte':'Mazunte',
@@ -1624,6 +1626,7 @@ const i18n={
     'bf.room':'Chambre','bf.guests':'Personnes','bf.checkin':'Arrivée','bf.checkout':'Départ',
     'bf.select':'Choisir','bf.btn':'Confirmer la disponibilité par WhatsApp',
     'bf.name':'Nom','bf.phone':'Téléphone','bf.pay':'Moyen de paiement',
+    'terms.accept':'J\'accepte les termes et conditions. Le paiement total et le justificatif sont requis pour confirmer la réservation.',
     'gallery.tag':'Galerie',
     'gallery.title':'Faites comme&nbsp;<em>chez vous</em>',
     'gal.all':'Tout','gal.common':'Espaces Communs','gal.kitchen':'Cuisine','gal.mazunte':'Mazunte',
@@ -2027,6 +2030,7 @@ function sendBooking(e){
   const pn=base+extra*300;
   const total=pn*nights;
   const totFmt=total.toLocaleString('es-MX');
+  const terms=i18n[currentLang]?.['terms.accept']||i18n['es']['terms.accept'];
   const msg=`Hola, quiero reservar en Casa Mazunte Tierra Viva.%0A%0A`+
     `Nombre: ${name}%0A`+
     `Teléfono: ${phone}%0A`+
@@ -2037,7 +2041,7 @@ function sendBooking(e){
     `Noches: ${nights}%0A`+
     `Método de pago: ${pay}%0A%0A`+
     `Total estimado: $${totFmt} MXN%0A%0A`+
-    `Acepto pago de reserva completa y acepto las condiciones.`;
+    `${terms}`;
   window.open(`https://wa.me/529581134155?text=${msg}`,'_blank');
   return false;
 }
