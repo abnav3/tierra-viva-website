@@ -16,10 +16,12 @@ Sitio web oficial de **Casa Mazunte Tierra Viva**, un hotel boutique de estilo m
 ```
 .
 ├── index.html              # Página principal
+├── styles.css              # Estilos CSS
+├── script.js               # JavaScript (i18n, galería, carrusel, booking)
 ├── video-header-dolphins.mp4  # Video de fondo del header
 ├── fotos/                  # Imágenes del hotel
-│   ├── bungalow-01.jpg
 │   ├── area-comun-01.jpg
+│   ├── bungalow-01.jpg
 │   ├── cocina-01.jpg
 │   └── ...
 └── README.md
